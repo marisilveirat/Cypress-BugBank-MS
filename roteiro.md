@@ -1,37 +1,96 @@
-Passos:
+# Cadastro de novo usuário - BugBank:
+Requisitos:
+1 - Acessar https://bugbank.netlify.app/ e clicar em "Registrar".
 
-O usuário acessa a página de cadastro.
-O usuário preenche o campo "Nome".
-O usuário preenche o campo "E-mail" com um endereço de e-mail válido.
-O usuário preenche o campo "Senha" com uma senha válida.
-O usuário preenche o campo "Confirmação de Senha" com a mesma senha inserida no passo anterior.
+## Caminho infeliz - formato de e-mail inválido:
+O usuário preenche o campo "E-mail" com um endereço de e-mail inválido [mari]
+O usuário preenche o campo "Nome" [Mari]
+O usuário preenche o campo "Senha" com uma senha válida [000]
+O usuário preenche o campo "Confirmação de Senha" com a mesma senha inserida no passo anterior [000]
 O usuário clica no botão "Cadastrar".
 
 Resultados Esperados:
-O sistema processa as informações fornecidas.
+Mensagem de formato de e-mail inválido aparecerá.
 
-Regra de Negócio:
-E-mail e senha são campos obrigatórios para o cadastro.
+## Caminho infeliz 2 - senhas não coincidem:
+O usuário preenche o campo "E-mail" com um endereço de e-mail válido [mari@teste.com]
+O usuário preenche o campo "Nome" [Mari]
+O usuário preenche o campo "Senha" com uma senha válida [000]
+O usuário preenche o campo "Confirmação de Senha" com senha diferente da inserida no passo anterior [22]
+O usuário clica no botão "Cadastrar".
 
-Com o Cypress, escreva os códigos dos seguintes testes:
+Resultados Esperados:
+Mensagem de formato de senha inválido aparecerá.
 
-    1 - Visite a página de principal do AdoPet e clique no botão ‘Ver pets disponíveis para adoção”:
-        O usuário acessa a landing page;
-        O usuário clica no botão 'Ver pets'
+## Caminho feliz:
+O usuário preenche o campo "E-mail" com um endereço de e-mail válido [mari@teste.com]
+O usuário preenche o campo "Nome" [Mari]
+O usuário preenche o campo "Senha" com uma senha válida [22]
+O usuário preenche o campo "Confirmação de Senha" com a mesma senha inserida no passo anterior [22]
+Marcar "começar conta com saldo".
+O usuário clica no botão "Cadastrar".
 
-    2 - Visite a página de principal do AdoPet e teste os botões header:
-        O usuário acessa a landing page;
-        O usuário clica no ícone "HOME";
-        O usuário clica no ícone "MENSAGEM";
+Resultados Esperados:
+O sistema processa as informações fornecidas e um número de conta deve ser gerado em pop-up [dados conta].
 
-    3 - Visite a página de /home do AdoPet e clique no botão “Falar com o responsável”.
+# Login de novo usuário:
+Requisitos:
+1 - Acessar https://bugbank.netlify.app/ e preencher os campos de login.
+2 - Preencher os campos de login com os dados fornecidos no teste de cadastro anterior.
 
-Caso de cenário triste:
-    1 - O usuário clicou em "Cadastrar";
-    2 - O usuário colocou apenas o e-mail dele;
-    3 - O usuário tentou clicar em "Cadastrar";
-    > Responsiva do sistema: Em "Senha" deve aparecer "Crie uma senha";
-                             Em "Confirme sua senha" deve aparecer "Repita a senha criada acima";
-    Resultados esperados:
-    Ele valida o campo "Nome" mesmo vazio;
-    Ele não valida os campos de e-mail e senha e retorna uma mensagem responsiva;
+## Caminho infeliz - Campos de preenchimento vazios no login:
+O usuário não preenche o campo "E-mail".
+O usuário não preenche o campo "Senha".
+O usuário clica no botão "Acessar".
+
+Resultados Esperados:
+O sistema não processa as informações e envia mensagem de campo de preenchimento vazio.
+
+## Caminho infeliz - E-mail preenchido com formato inválido:
+O usuário preenche o campo "E-mail" com um endereço de e-mail inválido [mari]
+O usuário preenche o campo "Senha" com uma senha válida [22]
+O usuário clica no botão "Acessar".
+
+Resultados Esperados:
+Mensagem de formato de e-mail inválido aparecerá.
+
+## Caminho feliz:
+O usuário preenche o campo "E-mail" com um endereço de e-mail válido [mari@teste.com]
+O usuário preenche o campo "Senha" com uma senha válida [22]
+O usuário clica no botão "Acessar".
+
+Resultados Esperados:
+Login é feito com sucesso e usuário é direcionado para a home - https://bugbank.netlify.app/home
+
+# Tranferência para outro usuário:
+Requisitos:
+1 - Acessar https://bugbank.netlify.app/ e clicar em "Registrar".
+2 - Criar nova conta para efetutar transferência para a conta de teste aqui utilizada, ao preencher "começar com saldo", R$1000,00 são adicionados automaticamente.
+3 - O usuário preenche o campo "E-mail" com um endereço de e-mail válido [sarita@teste.com]
+4 - O usuário preenche o campo "Nome" [Sara]
+5 - O usuário preenche o campo "Senha" com uma senha válida [pet]
+6 - O usuário preenche o campo "Confirmação de Senha" com a mesma senha inserida no passo anterior [pet]
+7 - O usuário clica no botão "Cadastrar".
+
+## Cenário feliz de transação bancária - O usuário Mari [dados] deve transferir para o usuário Sara [dados] e verificar o extrato final:
+Usuário Mari efetura login [mari@teste.com] [22] e é direcionado para a home.
+Usuário Mari clica em transferências e é direcionado para https://bugbank.netlify.app/transfer.
+// digita número da conta do usuário Sara, e o dígito.
+// digita o valor de R$100,00 em transferência.
+// adiciona comentário "Ração pet".
+// clica no botão "transferir agora".
+// volta para a home e clica em "extrato" e é direcionado para https://bugbank.netlify.app/bank-statement.
+Valor de R$900,00 deve ser visível.
+Finalizar operação clicando em "sair".
+
+Resultados Esperados:
+Pop-up com mensagem "Transferencia realizada com sucesso" aparecerá e o saldo deverá ficar em R$900,00.
+
+## Cenário feliz de transação bancária - verificando se o extrato de Sara confere com R$100,00:
+Usuário Sara efetura login [sarita@teste.com] [pet] e é direcionado para a home.
+Usuário Mari clica em "extrato" e é direcionado para https://bugbank.netlify.app/bank-statement.
+Valor de R$900,00 deve ser visível em extrato.
+Finalizar operação clicando em "sair".
+
+Resultados Esperados:
+Aparecerá e o saldo deverá ficar em R$900,00.
