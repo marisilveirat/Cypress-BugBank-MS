@@ -7,6 +7,7 @@ Este repositório contém testes automatizados para o **BugBank**, um aplicativo
 - [Sobre o Projeto](#sobre-o-projeto)
 - [Funcionalidades Testadas](#funcionalidades-testadas)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Impedimentos](#impedimentos)
 
 ## Sobre o Projeto
 
@@ -28,4 +29,9 @@ Os testes automatizados cobrem diferentes cenários, como casos de sucesso e fal
 - [VSCode]: IDE de desenvolvimento
 - [Node.js]: Ambiente de execução para JavaScript.
 
-- Transações/transferências ainda em construção.
+## Impedimentos🚨
+#### - Transações/transferências ainda em construção.
+
+
+#### - A aplicação não conta com um BANCO DE DADOS, todas as informações são armazenadas em memória local, sendo impossibilitado de fazer um cenário de transação positiva em Cypress!
+
