@@ -20,9 +20,9 @@ Os testes automatizados cobrem diferentes cenários, como casos de sucesso e fal
 
 - **Cadastro de Usuário**: Verifica se é possível criar novas contas com diferentes tipos de dados.
 - **Login**: Testa a autenticação de usuários com credenciais válidas e inválidas.
-- **Transferências**: Simula transferências entre contas, validando os valores antes e depois da operação.
-- **Saldo e Extrato**: Confirma se o saldo é atualizado corretamente após transações e se o extrato reflete todas as operações realizadas.
-
+- **Transferências**: Simula transferências entre contas, invalidando a conta destinatária.
+- **Funcionalidades**: Confirma o funcionamento de botões, seletores e pop-ups.
+  
 ## Tecnologias Utilizadas
 
 - [Cypress]: Framework de testes automatizados E2E.
