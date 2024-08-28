@@ -1,6 +1,6 @@
 # Testes Automatizados no BugBank com Cypress
 
-Este repositório contém testes automatizados para o **BugBank**, um aplicativo de banco simulado, desenvolvidos utilizando o framework [Cypress](https://www.cypress.io/). O objetivo dos testes é garantir que as funcionalidades principais do BugBank estejam funcionando corretamente, seja em cases de sucesso ou não, simulando cenários reais de uso do usuário final.
+Este repositório contém testes automatizados para o **BugBank**, um aplicativo de banco simulado, desenvolvidos utilizando o framework [Cypress](https://www.cypress.io/). O objetivo dos testes é garantir que as funcionalidades principais do BugBank estejam funcionando corretamente, seja em cases de sucesso ou não, simulando cenários reais de uso final.
 
 ## Índice
 
